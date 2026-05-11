@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ts land</title>
-    <style>
-        /* 1. Remove scrollbars and gaps around the edge */
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden; /* Prevents scrollbars */
-            background-color: #000; /* Optional: black background like a theater */
-        }
-
-        /* 2. Make the container fill the whole screen */
-        #container {
-            width: 100vw;
-            height: 100vh;
-        }
-    </style>
+    <title>enrgr</title>
 </head>
 <body>
+    <!-- You MUST add this div so Ruffle has a place to appear -->
     <div id="container"></div>
 
-    <script src="https://unpkg.com"></script>
+    <!-- This loads Ruffle from the internet; you don't need a local ruffle.js file -->
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+
     <script>
         window.RufflePlayer = window.RufflePlayer || {};
         window.addEventListener("DOMContentLoaded", () => {
@@ -32,15 +18,8 @@
             const container = document.getElementById("container");
             container.appendChild(player);
             
-            // 3. Force the player to match the container size
-            player.style.width = "100%";
-            player.style.height = "100%";
-            
-            player.load({
-                url: "movie.swf",
-                // 4. Optional: Ensures the movie scales properly without stretching
-                letterbox: "on" 
-            });
+            // "movie.swf" must be in the same folder as this index.html on GitHub
+            player.load("movie.swf");
         });
     </script>
 </body>
