@@ -1,13 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Saucer</title>
+    <title>Saucer - Full Screen</title>
+    <style>
+        /* 1. Remove scrollbars and gaps around the edge */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Prevents scrollbars */
+            background-color: #000; /* Optional: black background like a theater */
+        }
+
+        /* 2. Make the container fill the whole screen */
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-    <!-- 1. Add this container div -->
     <div id="container"></div>
 
-    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script src="https://unpkg.com"></script>
     <script>
         window.RufflePlayer = window.RufflePlayer || {};
         window.addEventListener("DOMContentLoaded", () => {
@@ -15,12 +31,16 @@
             const player = ruffle.createPlayer();
             const container = document.getElementById("container");
             container.appendChild(player);
-
+            
+            // 3. Force the player to match the container size
             player.style.width = "100%";
             player.style.height = "100%";
             
-            // 2. Fix: Use player.load() directly with the file path
-            player.load("movie.swf");
+            player.load({
+                url: "movie.swf",
+                // 4. Optional: Ensures the movie scales properly without stretching
+                letterbox: "on" 
+            });
         });
     </script>
 </body>
