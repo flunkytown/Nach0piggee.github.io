@@ -4,16 +4,21 @@
     <title>Saucer</title>
 </head>
 <body>
+    <!-- 1. Add this container div -->
+    <div id="container"></div>
+
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
     <script>
-    window.RufflePlayer = window.RufflePlayer || {};
-    window.addEventListener("load", (event) => {
-        const ruffle = window.RufflePlayer.newest();
-        const player = ruffle.createPlayer();
-        const container = document.getElementById("container");
-        container.appendChild(player);
-        player.ruffle().load("movie.swf");
-    });
-</script>
-<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+        window.RufflePlayer = window.RufflePlayer || {};
+        window.addEventListener("DOMContentLoaded", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+            const container = document.getElementById("container");
+            container.appendChild(player);
+            
+            // 2. Fix: Use player.load() directly with the file path
+            player.load("movie.swf");
+        });
+    </script>
 </body>
 </html>
