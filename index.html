@@ -15,6 +15,9 @@
             const player = ruffle.createPlayer();
             const container = document.getElementById("container");
             container.appendChild(player);
+
+            player.style.width = "100%";
+            player.style.height = "100%";
             
             // 2. Fix: Use player.load() directly with the file path
             player.load("movie.swf");
